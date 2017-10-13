@@ -9,38 +9,37 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.mikat.coderswang.Model.Category
 import com.example.mikat.coderswang.R
-import kotlinx.android.synthetic.main.category_list_item.view.*
 
 /**
  * Created by mikat on 13.10.2017.
  */
 class CategoryRecycleAdapter(val context: Context, val categories: List<Category>)
-            : RecyclerView.Adapter<CategoryRecycleAdapter.Holder>() {
+            : RecyclerView.Adapter<CategoryRecycleAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): Holder {
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context)
                 .inflate(R.layout.category_list_item, parent, false)
-        return Holder(view)
+        return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: Holder?, position: Int) {
-        holder?.bindCategory(position, context)
+    override fun onBindViewHolder(viewHolder: ViewHolder?, position: Int) {
+        viewHolder?.bind(categories[position])
     }
 
     override fun getItemCount(): Int {
         return categories.count()
     }
 
-    inner class Holder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
-        val categoryImage = itemView?.findViewById<ImageView>(R.id.categoryImage)
-        val categoryName = itemView?.findViewById<TextView>(R.id.categoryName)
+    inner class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+        val categoryImageView = itemView?.findViewById<ImageView>(R.id.categoryImage)
+        val categoryNameView = itemView?.findViewById<TextView>(R.id.categoryName)
 
-        fun bindCategory(position: Int, context: Context) {
-            categoryImage?.setImageResource(
-                    context.resources.getIdentifier(categories[position].image,
+        fun bind(category: Category) {
+            categoryImageView?.setImageResource(
+                    context.resources.getIdentifier(category.image,
                     "drawable",
                     context.packageName))
-            categoryName?.text = categories[position].title
+            categoryNameView?.text = category.title
         }
     }
 }
