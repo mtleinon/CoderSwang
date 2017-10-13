@@ -17,9 +17,9 @@ class CategoryRecycleAdapter(val context: Context, val categories: List<Category
             : RecyclerView.Adapter<CategoryRecycleAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context)
+        val itemView = LayoutInflater.from(context)
                 .inflate(R.layout.category_list_item, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(itemView)
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder?, position: Int) {
@@ -31,8 +31,8 @@ class CategoryRecycleAdapter(val context: Context, val categories: List<Category
     }
 
     inner class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
-        val categoryImageView = itemView?.findViewById<ImageView>(R.id.categoryImage)
-        val categoryNameView = itemView?.findViewById<TextView>(R.id.categoryName)
+        private val categoryImageView = itemView?.findViewById<ImageView>(R.id.categoryImage)
+        private val categoryNameView = itemView?.findViewById<TextView>(R.id.categoryName)
 
         fun bind(category: Category) {
             categoryImageView?.setImageResource(
