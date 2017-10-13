@@ -21,8 +21,8 @@ class CategoryAdapter(val context: Context, val categories: List<Category>) : Ba
             println("Lifecycle: convertView == null: Position=$position")
             categoryView = LayoutInflater.from(context).inflate(R.layout.category_list_item, null)
             holder = ViewHolder()
-            holder.categoryImage = categoryView.findViewById<ImageView>(R.id.categoryImage)
-            holder.categoryName = categoryView.findViewById<TextView>(R.id.categoryName)
+            holder.categoryImageView = categoryView.findViewById<ImageView>(R.id.categoryImage)
+            holder.categoryNameView = categoryView.findViewById<TextView>(R.id.categoryName)
             categoryView.tag = holder
         } else {
             println("Lifecycle: convertView != null: Position=$position")
@@ -33,8 +33,8 @@ class CategoryAdapter(val context: Context, val categories: List<Category>) : Ba
         val category = categories[position]
 
         val resourceId = context.resources.getIdentifier(category.image, "drawable", context.packageName)
-        holder.categoryImage?.setImageResource(resourceId)
-        holder.categoryName?.text = category.title
+        holder.categoryImageView?.setImageResource(resourceId)
+        holder.categoryNameView?.text = category.title
         return categoryView
     }
 
@@ -50,8 +50,8 @@ class CategoryAdapter(val context: Context, val categories: List<Category>) : Ba
         return categories.count()
     }
     private class ViewHolder{
-        var categoryImage: ImageView? = null
-        var categoryName: TextView? = null
+        var categoryImageView: ImageView? = null
+        var categoryNameView: TextView? = null
     }
 
 }
