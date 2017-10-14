@@ -13,7 +13,9 @@ import com.example.mikat.coderswang.R
 /**
  * Created by mikat on 13.10.2017.
  */
-class CategoryRecycleAdapter(val context: Context, val categories: List<Category>)
+class CategoryRecycleAdapter(val context: Context,
+                             val categories: List<Category>,
+                             val itemClick: (Category) -> Unit)
             : RecyclerView.Adapter<CategoryRecycleAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
@@ -40,6 +42,7 @@ class CategoryRecycleAdapter(val context: Context, val categories: List<Category
                     "drawable",
                     context.packageName))
             categoryNameView?.text = category.title
+            itemView.setOnClickListener { itemClick(category)}
         }
     }
 }

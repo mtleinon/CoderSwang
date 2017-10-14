@@ -10,8 +10,8 @@ import android.widget.TextView
 import com.example.mikat.coderswang.Model.Category
 import com.example.mikat.coderswang.R
 
-class CategoryAdapter(val context: Context, val categories: List<Category>) : BaseAdapter() {
-
+class CategoryAdapter(val context: Context,
+                      val categories: List<Category>) : BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val categoryView: View
@@ -31,9 +31,8 @@ class CategoryAdapter(val context: Context, val categories: List<Category>) : Ba
         }
 
         val category = categories[position]
-
-        val resourceId = context.resources.getIdentifier(category.image, "drawable", context.packageName)
-        holder.categoryImageView?.setImageResource(resourceId)
+        holder.categoryImageView?.setImageResource(
+                context.resources.getIdentifier(category.image, "drawable", context.packageName))
         holder.categoryNameView?.text = category.title
         return categoryView
     }
